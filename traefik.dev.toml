@@ -1,7 +1,7 @@
 debug = true
 
 logLevel = "INFO"
-defaultEntryPoints = ["https","http"]
+defaultEntryPoints = ["http"]
 
 [accessLog]
 enabled=true
@@ -9,14 +9,6 @@ enabled=true
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
-    address = ":443"
-  [entryPoints.https.tls]
-    [[entryPoints.https.tls.certificates]]
-      certFile = "/certs/dev.crt"
-      keyFile = "/certs/dev.key"
 
 [api]
 entryPoint = "traefik"

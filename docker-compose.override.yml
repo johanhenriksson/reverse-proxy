@@ -3,4 +3,3 @@ services:
     proxy:
         volumes:
             - './traefik.dev.toml:/traefik.toml'
-            - './certs:/certs'
