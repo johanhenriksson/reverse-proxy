@@ -1,19 +1,14 @@
 debug = true
 
 logLevel = "INFO"
-defaultEntryPoints = ["https","http"]
-
-[accessLog]
-enabled=true
+defaultEntryPoints = ["http"]
 
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-    [entryPoints.http.redirect]
-    entryPoint = "https"
-  [entryPoints.https]
-    address = ":443"
-  [entryPoints.https.tls]
+
+[api]
+dashboard = true
 
 [retry]
 
@@ -22,12 +17,3 @@ endpoint = "unix:///var/run/docker.sock"
 domain = "localhost"
 watch = true
 exposedByDefault = false
-
-[acme]
-email = "johan@stackpoint.se"
-storage = "/acme.json"
-entryPoint = "https"
-onHostRule = true
-
-[acme.httpChallenge]
-entryPoint = "http"

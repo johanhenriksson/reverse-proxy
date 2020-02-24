@@ -1,5 +1,0 @@
-version: '2'
-services:
-    proxy:
-        volumes:
-            - './traefik.dev.toml:/traefik.toml'

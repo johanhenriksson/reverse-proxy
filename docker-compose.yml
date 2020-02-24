@@ -4,11 +4,10 @@ networks:
         external: true
 services:
     proxy:
-        image: 'traefik'
-        container_name: 'traefik'
+        image: 'traefik:1.7-alpine'
+        container_name: 'proxy'
         restart: 'always'
         ports:
-            - '443:443'
             - '80:80'
             - '8080:8080'
         networks:
@@ -16,4 +15,3 @@ services:
         volumes:
             - '/var/run/docker.sock:/var/run/docker.sock'
             - './traefik.toml:/traefik.toml'
-            - './acme.json:/acme.json'
