@@ -1,14 +1,9 @@
-debug = true
-
 logLevel = "INFO"
 defaultEntryPoints = ["http"]
 
 [entryPoints]
   [entryPoints.http]
   address = ":80"
-
-[api]
-dashboard = true
 
 [retry]
 
