@@ -7,17 +7,14 @@ services:
   proxy:
     image: 'traefik:2.3'
     container_name: 'proxy'
+    restart: 'always'
     command:
-      - '--entrypoints.web.address=:80'
-      - '--entrypoints.websecure.address=:443'
       - '--providers.docker=true'
       - '--providers.docker.network=web2'
-      - '--certificatesresolvers.le.acme.email=johanh@stackpoint.se'
-      - '--certificatesresolvers.le.acme.storage=/acme.json'
-      - '--certificatesresolvers.le.acme.tlschallenge=true'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - './acme.json:/acme.json'
+      - './cert:/cert'
+      - './traefik.yml:/traefik.yml'
     networks:
       - 'web2'
     ports:
