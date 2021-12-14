@@ -12,8 +12,9 @@ entryPoints:
 
 providers:
   file:
-    filename: '/certs/config.yml'
+    directory: '/config/domains'
     watch: true
   docker: 
+    network: 'web'
     exposedByDefault: false
 

@@ -1,6 +1,6 @@
 version: '3'
 networks:
-  web2:
+  web:
     external: true
 
 services:
@@ -10,10 +10,10 @@ services:
     restart: 'always'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - './certs:/certs'
+      - './config:/config'
       - './traefik.yml:/traefik.yml'
     networks:
-      - 'web2'
+      - 'web'
     ports:
       - '80:80'
       - '443:443'

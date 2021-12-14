@@ -9,12 +9,13 @@ subjectAltName = @alt_names
 
 [alt_names]
 DNS.1 = $domain
+DNS.2 = *.$domain
 EOF
 
 # create a certificate signing request for the domain
 openssl req -new -nodes \
     -subj "/C=SE/O=Backtick Technologies AB/CN=$domain" \
-    -keyout "./certs/$domain.key" \
+    -keyout "./config/certs/$domain.key" \
     -out request.csr
 
 # sign it
@@ -23,12 +24,14 @@ openssl x509 -req -days 825 -sha256 \
     -CA ./root/backtick.pem -CAkey ./root/backtick.key \
     -CAcreateserial \
     -extfile conf.ext \
-    -out ./certs/$domain.crt
+    -out ./config/certs/$domain.crt
 
 # delete intermediate files
 rm conf.ext request.csr
 
-# add them to traefik
-echo "    - certFile: /certs/$domain.crt" >> ./certs/config.yml
-echo "      keyFile: /certs/$domain.key" >> ./certs/config.yml
+# add cert to traefik
+echo "tls:" > ./config/domains/$domain.yml
+echo "  certificates:" >> ./config/domains/$domain.yml
+echo "    - certFile: /config/certs/$domain.crt" >> ./config/domains/$domain.yml
+echo "      keyFile: /config/certs/$domain.key" >> ./config/domains/$domain.yml
 
