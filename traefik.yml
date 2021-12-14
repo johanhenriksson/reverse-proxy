@@ -1,0 +1,12 @@
+debug: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  file:
+    filename: '/cert/cert.yml'
+
