@@ -1,0 +1,6 @@
+tls:
+  certificates:
+    - certFile: /certs/internal.localhost.crt
+      keyFile: /certs/internal.localhost.key
+    - certFile: /certs/webshop.localhost.crt
+      keyFile: /certs/webshop.localhost.key

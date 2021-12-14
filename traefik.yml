@@ -1,12 +1,19 @@
-debug: true
+log:
+  level: 'INFO'
 
 entryPoints:
   web:
     address: ":80"
+
   websecure:
     address: ":443"
+    http:
+      tls: {}
 
 providers:
   file:
-    filename: '/cert/cert.yml'
+    filename: '/certs/config.yml'
+    watch: true
+  docker: 
+    exposedByDefault: false
 

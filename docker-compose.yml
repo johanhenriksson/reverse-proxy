@@ -5,15 +5,12 @@ networks:
 
 services:
   proxy:
-    image: 'traefik:2.3'
+    image: 'traefik:2.5'
     container_name: 'proxy'
     restart: 'always'
-    command:
-      - '--providers.docker=true'
-      - '--providers.docker.network=web2'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock:ro'
-      - './cert:/cert'
+      - './certs:/certs'
       - './traefik.yml:/traefik.yml'
     networks:
       - 'web2'
